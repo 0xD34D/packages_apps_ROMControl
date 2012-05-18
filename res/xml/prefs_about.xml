@@ -18,6 +18,11 @@
 			android:summary="@string/aokp_source_summary" />
 
 		<Preference
+			android:key="aokp_review"
+			android:title="@string/aokp_review_title"
+			android:summary="@string/aokp_review_summary" />
+
+		<Preference
 			android:key="aokp_irc"
 			android:title="@string/aokp_irc_title"
 			android:summary="@string/aokp_irc_summary" />
@@ -39,6 +44,7 @@
 
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="Zaphod-Beeble"
+			aokp:twitterHandle="Dont_Panic_Zaph"
 			aokp:donateLink="@string/donate_zaph" />
 
 		<com.aokp.romcontrol.widgets.DeveloperPreference
@@ -59,6 +65,11 @@
 			android:title="sethyx"
 			aokp:twitterHandle="sethyx"
 			aokp:donateLink="@string/donate_sethyx" />
+
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="0xD34D"
+			aokp:twitterHandle="0xD34D"
+			aokp:donateLink="" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
