@@ -3,16 +3,17 @@ package com.aokp.romcontrol;
 
 import android.content.Context;
 import android.util.Log;
+import java.lang.Class;
 
 public class WeatherInfo {
 
     private static final String NODATA = "No data";
 
     public String city, forecast_date, condition, condition_code, temp, temp_unit, humidity, wind,
-            wind_dir, speed_unit, low, high;
+            wind_dir, speed_unit, low, high, timestamp;
 
     public WeatherInfo() {
-        this.city = this.forecast_date = this.condition = this.condition_code = this.temp = this.temp_unit = this.humidity = this.wind = this.wind_dir = this.speed_unit = this.low = this.high = NODATA;
+        this.city = this.forecast_date = this.condition = this.condition_code = this.temp = this.temp_unit = this.humidity = this.wind = this.wind_dir = this.speed_unit = this.low = this.high = this.timestamp = NODATA;
     }
 
     public WeatherInfo(String city, String fdate, String condition, String condition_code,
@@ -25,10 +26,11 @@ public class WeatherInfo {
         this.temp = temp + "°" + temp_unit;
         this.temp_unit = temp_unit;
         this.humidity = humidity + "%";
-        this.wind = calcDirection(wind_dir) + " " + trimSpeed(wind) + speed_unit;
+        this.wind = wind_dir + " " + trimSpeed(wind) + speed_unit;
         this.speed_unit = speed_unit;
         this.low = low + "°" + temp_unit;
         this.high = high + "°" + temp_unit;
+        this.timestamp = "";
     }
 
     /**
@@ -48,24 +50,24 @@ public class WeatherInfo {
         return (resID != 0) ? mContext.getResources().getString(resID) : providedString;
     }
 
-    private String calcDirection(String degrees) {
+    public static String getTranslatedDirectionString(Context mContext, String degrees) {
         int deg = Integer.parseInt(degrees);
         if (deg >= 338 || deg <= 22)
-            return "N";
+            return mContext.getResources().getString(R.string.direction_north);
         else if (deg < 68)
-            return "NE";
+            return mContext.getResources().getString(R.string.direction_north_east);
         else if (deg < 113)
-            return "E";
+            return mContext.getResources().getString(R.string.direction_east);
         else if (deg < 158)
-            return "SE";
+            return mContext.getResources().getString(R.string.direction_south_east);
         else if (deg < 203)
-            return "S";
+            return mContext.getResources().getString(R.string.direction_east);
         else if (deg < 248)
-            return "SW";
+            return mContext.getResources().getString(R.string.direction_south_west);
         else if (deg < 293)
-            return "W";
+            return mContext.getResources().getString(R.string.direction_west);
         else if (deg < 338)
-            return "NW";
+            return mContext.getResources().getString(R.string.direction_north_west);
         else
             return "";
     }
